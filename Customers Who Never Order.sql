@@ -91,8 +91,7 @@ VALUES ('1', '3');
 INSERT INTO Orders (id, customerId)
 VALUES ('2', '1');
 
-SELECT c.name name
-FROM Customers c
-WHERE (SELECT o.customerId
-       FROM Orders o
-       WHERE c.id = o.customerId) IS NULL;
+SELECT name AS Customers
+FROM Customers
+WHERE id NOT IN (SELECT customerId
+                 FROM Orders);
